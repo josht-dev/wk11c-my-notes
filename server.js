@@ -1,12 +1,19 @@
-import express from 'express';
-import path from 'path';
-import fs from 'fs';
-import { v4 as uuidv4 } from 'uuid';
-// uuidv4(); // call to get random id
+const express = require('express');
+const path = require('path');
+const fs = require('fs');
+const { v4: uuidv4 } = require('uuid');
 
 const PORT = 3001;
 const app = express();
 
+app.use(express.json());
+
+app.use(express.static('public'));
+
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '/public/index.html'));
+});
 
 // TODO - API route GET /api/notes
 // TODO - API route POST /api/notes
@@ -15,6 +22,6 @@ const app = express();
 // TODO - Use FS to read/write to db.json
 
 
-app.listening(PORT, () => {
+app.listen(PORT, () => {
     console.log(`App listening at http://localhost:${PORT}`);
 });
