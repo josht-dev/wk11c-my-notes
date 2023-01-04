@@ -92,6 +92,7 @@ app.delete('/api/notes/*', (req, res) => {
 });
 
 // TODO - Add missing route handler
+// TODO - Change routes to be modular if additional routes are needed
 
 app.listen(PORT, () => {
     console.log(`App listening at http://localhost:${PORT}`);
