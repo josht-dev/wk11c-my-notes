@@ -48,7 +48,7 @@ app.post('/api/notes', (req, res) => {
         'text': text
     }
 
-    // // Add newNote to db file
+    // Add newNote to db file
     dbFile.push(newNote);
     fs.writeFile('./db/db.json', JSON.stringify(dbFile), (err) => {
         if (err) {
@@ -65,14 +65,28 @@ app.post('/api/notes', (req, res) => {
 
 });
 
-// DELETE route for the notes request at /api/notes
-app.delete('/api/notes:id', (req, res) => {
-    // Handle note delete request
+/* DELETE route for the notes request at /api/notes
+    Frontend did not use the id query for delete requests */
+app.delete('/api/notes/*', (req, res) => {
+    // TODO - 
 
+    // Store db file
+    const dbFile = db;
+    // Array index of the id to remove
+    const idIndex = db.findIndex(val => {return val.id === req.params[0]});
 
+    // Remove the note from db
+    dbFile.splice(idIndex, 1);
 
+    // Save the changes to db file
+    fs.writeFile('./db/db.json', JSON.stringify(dbFile), (err) => {
+        if (err) {
+            console.error(err)
+        }
+    });
 
-    
+    // Return message for removed note
+    return res.json(`A note was deleted with ID: ${req.params[0]}`);
 });
 
 // TODO - Missing route handler
