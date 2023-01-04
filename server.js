@@ -8,6 +8,9 @@ const PORT = 3001;
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(express.json());
 //app.use('/api', api);
 
 app.use(express.static('public'));
@@ -23,9 +26,7 @@ app.get('/notes', (req, res) => {
 });
 
 // GET route for the notes request at /api/notes
-app.get('/api/notes', (req, res) => {
-    // Handle existing notes request
-});
+app.get('/api/notes', (req, res) => res.json(db));
 
 //POST route for the notes request at /api/notes
 app.post('/api/notes', (req, res) => {
