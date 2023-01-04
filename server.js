@@ -28,17 +28,18 @@ app.get('/notes', (req, res) => {
 // GET route for the notes request at /api/notes, loads existing notes
 app.get('/api/notes', (req, res) => res.json(db));
 
-//POST route for the notes request at /api/notes
+//POST route to save note request at /api/notes
 app.post('/api/notes', (req, res) => {
-    // Handle saving notes request
-    
     // Log the POST request was received
     console.info(`${req.method} request received to add a note`);
 
     // Destruct assignment for the items in req.body
-    const { title, text } = req.body[0];
+    const { title, text } = req.body;
 
-    // TODO - Check all required values present
+    // TODO - Check all required values present - Frontend js is actually handling this
+
+    // Store db file
+    const dbFile = db;
 
     // Generate the note obj with a unique id
     const newNote = {
@@ -47,12 +48,19 @@ app.post('/api/notes', (req, res) => {
         'text': text
     }
 
+    // // Add newNote to db file
+    dbFile.push(newNote);
+    fs.writeFile('./db/db.json', JSON.stringify(dbFile), (err) => {
+        if (err) {
+            console.error(err)
+        }
+    });
+
+    // Successful response
     const response = {
         status: 'success',
         body: newNote
     }
-
-    console.log(response);
     res.status(201).json(response);
 
 });
@@ -60,16 +68,14 @@ app.post('/api/notes', (req, res) => {
 // DELETE route for the notes request at /api/notes
 app.delete('/api/notes:id', (req, res) => {
     // Handle note delete request
+
+
+
+
+    
 });
 
 // TODO - Missing route handler
-
-// TODO - API route GET /api/notes
-// TODO - API route POST /api/notes
-// TODO - GET * should return index.html
-// TODO - GET /notes should return notes.html
-// TODO - Use FS to read/write to db.json
-
 
 app.listen(PORT, () => {
     console.log(`App listening at http://localhost:${PORT}`);
