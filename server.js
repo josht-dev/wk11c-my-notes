@@ -15,6 +15,15 @@ app.use(express.json());
 
 app.use(express.static('public'));
 
+// Save changes to db file function
+const save = (dbFile) => {
+    fs.writeFile('./db/db.json', JSON.stringify(dbFile), (err) => {
+        if (err) {
+            console.error(err)
+        }
+    });
+}
+
 // GET route for homepage
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/index.html'));
@@ -50,11 +59,7 @@ app.post('/api/notes', (req, res) => {
 
     // Add newNote to db file
     dbFile.push(newNote);
-    fs.writeFile('./db/db.json', JSON.stringify(dbFile), (err) => {
-        if (err) {
-            console.error(err)
-        }
-    });
+    save(dbFile);
 
     // Successful response
     const response = {
@@ -68,7 +73,10 @@ app.post('/api/notes', (req, res) => {
 /* DELETE route for the notes request at /api/notes
     Frontend did not use the id query for delete requests */
 app.delete('/api/notes/*', (req, res) => {
-    // TODO - 
+    // TODO - Add check for valid id since frontend code didn't use id params
+
+    // Log the DELETE request was received
+    console.info(`${req.method} request received to remove a note with ID: ${req.params[0]}`);
 
     // Store db file
     const dbFile = db;
@@ -79,11 +87,7 @@ app.delete('/api/notes/*', (req, res) => {
     dbFile.splice(idIndex, 1);
 
     // Save the changes to db file
-    fs.writeFile('./db/db.json', JSON.stringify(dbFile), (err) => {
-        if (err) {
-            console.error(err)
-        }
-    });
+    save(dbFile);
 
     // Return message for removed note
     return res.json(`A note was deleted with ID: ${req.params[0]}`);
