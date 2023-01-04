@@ -2,61 +2,29 @@
 
 ![GitHub](https://img.shields.io/github/license/josht-dev/wk11c-my-notes?style=for-the-badge)
 ![node-lts](https://img.shields.io/badge/node-16.18.0-brightgreen?style=for-the-badge)
-[![npm version](https://img.shields.io/badge/express.js-4.16.4-brightgreen?style=for-the-badge)](https://badge.fury.io/js/inquirer)
+[![npm version](https://img.shields.io/badge/express-4.16.4-brightgreen?style=for-the-badge)](https://badge.fury.io/js/express)
 ![GitHub issues](https://img.shields.io/github/issues/josht-dev/wk11c-my-notes?style=for-the-badge)
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
-
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
-
-## Table of Contents (Optional)
-
-If your README is long, add a table of contents to make it easy for users to find what they need.
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Credits](#credits)
-- [License](#license)
+This application allows the user to view, add, and remove notes to better keep track of tasks as well as organize their thoughts. It uses nodejs and express npm packages for the backend of the application to update the database file and process the server routes.
 
 ## Installation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+- Clone the repo into your installation folder
+- Open a terminal and navigate to your installation folder
+- Run 'npm i' to install the required modules
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+Open a terminal into the application directory and run "node server"to start the node backend. Then open a browser and enter "localhost:3001" into the address bar. Click the "Get Started" button to load any existing notes. Click on a note on the left to view it. The "+" button will allow the user to enter a new note. Clicking the save icon will save the note to the database file.
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-
-A video walkthrough of the application:
-
-![screenshot](./dist/screenshot.png)
+![screenshot](./assets/screenshot.png)
 
 ## Credits
 
-List your collaborators, if any, with links to their GitHub profiles.
-
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-
-If you followed tutorials, include links to those here as well.
+Frontend starter code provided here: https://github.com/coding-boot-camp/miniature-eureka
 
 ## License
 
 Refer to the LICENSE in the repo.
-
----
-
-🏆 The previous sections are the bare minimum, and your project will ultimately determine the content of this document. You might also want to consider adding the following sections.
-
-## Features
-
-If your project has a lot of features, list them here.
-
-## Tests
-
-Go the extra mile and write tests for your application. Then provide examples on how to run them here.
