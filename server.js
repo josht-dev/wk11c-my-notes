@@ -1,18 +1,17 @@
+// Required modules
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 const db = require('./db/db.json');
 
+// Start the express npm package for backend processing
 const PORT = 3001;
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 app.use(express.json());
-//app.use('/api', api);
-
 app.use(express.static('public'));
 
 // Save changes to db file function
@@ -67,11 +66,10 @@ app.post('/api/notes', (req, res) => {
         body: newNote
     }
     res.status(201).json(response);
-
 });
 
 /* DELETE route for the notes request at /api/notes
-    Frontend did not use the id query for delete requests */
+    Frontend did not use the parameter query id for delete requests */
 app.delete('/api/notes/*', (req, res) => {
     // TODO - Add check for valid id since frontend code didn't use id params
 
@@ -93,7 +91,7 @@ app.delete('/api/notes/*', (req, res) => {
     return res.json(`A note was deleted with ID: ${req.params[0]}`);
 });
 
-// TODO - Missing route handler
+// TODO - Add missing route handler
 
 app.listen(PORT, () => {
     console.log(`App listening at http://localhost:${PORT}`);
