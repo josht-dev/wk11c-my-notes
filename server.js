@@ -6,7 +6,7 @@ const { v4: uuidv4 } = require('uuid');
 const db = require('./db/db.json');
 
 // Start the express npm package for backend processing
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const app = express();
 
 app.use(express.json());
